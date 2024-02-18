@@ -2,7 +2,7 @@
   <div>
     <!-- Navbar Component -->
     <Navbar />
-
+    <router-view></router-view>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
@@ -19,14 +19,13 @@
     <!-- Display Random Cat Photo -->
     <img id="cat" :src="catImage" alt="Random Cat Photo" />
 
-    <!-- HelloWorld Component -->
-    <HelloWorld msg="Vite + Vue" />
+ 
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+
 import Navbar from './components/Navbar.vue'
 
 const catImage = ref('') // Reactive variable to hold the URL of the cat image
