@@ -16,14 +16,30 @@
       <p>This app is about products that cat people can purchase products that are used for cat-proofing their home so that sharing their home with a feline can be more pleasant.</p>
     </section>
 
+    <!-- Display Random Cat Photo -->
+    <img id="cat" :src="catImage" alt="Random Cat Photo" />
+
     <!-- HelloWorld Component -->
     <HelloWorld msg="Vite + Vue" />
   </div>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import Navbar from './components/Navbar.vue'
+
+const catImage = ref('') // Reactive variable to hold the URL of the cat image
+
+onMounted(async () => {
+  try {
+    const response = await fetch('http://shibe.online/api/cats?count=1&urls=true&httpsUrls=false')
+    const data = await response.json()
+    catImage.value = data[0]
+  } catch (error) {
+    console.error('Failed to fetch cat image:', error)
+  }
+})
 </script>
 
 <style scoped>
